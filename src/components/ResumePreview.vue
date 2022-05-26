@@ -14,6 +14,7 @@
 #_resumePreviewComp{
     position: absolute;
     margin-left: 50%;
-    margin-top: 300px;
+    margin-top: -300px;
+    padding: 15px;
 }
 </style>

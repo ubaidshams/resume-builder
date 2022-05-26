@@ -4,7 +4,7 @@
     ref="observer"
     v-slot="{ invalid }"
   >
-    <form @submit.prevent="submit">
+    <form @submit.prevent="handleSubmit">
       <validation-provider
         v-slot="{ errors }"
         name="Name"
@@ -12,7 +12,7 @@
       >
         <v-text-field
           v-model="name"
-          
+          :counter="10"
           :error-messages="errors"
           label="Name"
           required
@@ -22,10 +22,8 @@
         v-slot="{ errors }"
         name="phoneNumber"
         :rules="{
-          numeric,
           required: true,
           digits: 7,
-
           regex: '^(71|72|74|76|81|82|84|85|86|87|88|89)\\d{5}$'
         }"
       >
@@ -82,6 +80,7 @@
         class="mr-4"
         type="submit"
         :disabled="invalid"
+        @click="handleSubmit"
       >
         submit
       </v-btn>
@@ -145,8 +144,11 @@
     }),
 
     methods: {
+      
       submit () {
-        this.$refs.observer.validate()
+        this.$refs.observer.validate();
+        console.log("submit is clicked");
+
       },
       clear () {
         this.name = ''
