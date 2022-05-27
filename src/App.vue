@@ -16,8 +16,10 @@ export default {
   components: {
     NavBar,
   },
-  data() {
-    return {};
-  },
-};
+  data(){
+    return{ 
+
+    }
+  }
+}
 </script>

@@ -5,13 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    payload: {
+      name: "",
+      phoneNumber: "",
+      age: "",
+      email: "",
+      select: null,
+      
+    },
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    handleSubmit: (state, payload) => {
+      state.payload = payload;
+    }
   },
   actions: {
+    handleSubmit: (context, payload) => {
+      context.commit("handleSubmit", payload);
+    },
   },
-  modules: {
-  }
-})
+  modules: {},
+});

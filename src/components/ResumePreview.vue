@@ -1,19 +1,25 @@
 <template>
-    <v-card id="_resumePreviewComp" class="red">
+    <v-card id="_resumePreviewComp" class="red " width="45%">
         this is the ResumePreview component
+        <CheckVuexVue/>
     </v-card>
 </template>
 
 <script>
+import CheckVuexVue from './tabs/CheckVuex.vue'
     export default {
-        name:"ResumePreview"
+        name:"ResumePreview",
+        components:{
+            CheckVuexVue
+        }
     }
 </script>
 
 <style scoped>
 #_resumePreviewComp{
     position: absolute;
-    margin-left: 50%;
-    margin-top: 300px;
+    margin-left: 53%;
+    margin-top: 200px;
+    padding: 15px;
 }
 </style>
