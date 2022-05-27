@@ -9,13 +9,8 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "vee-validate": "3",
-<<<<<<< HEAD
-    
-    
-=======
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
->>>>>>> dd8e2ae17be445005d95956d84c1e1e3c614efda
     "firebase": "^9.8.1",
     "vue-toastify": "^1.8.1",
     "vuetify": "^2.6.0",

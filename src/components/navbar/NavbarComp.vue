@@ -4,6 +4,7 @@
       v-model="tab"
       background-color="primary"
       dark
+      class="w-50%"
     >
       <v-tab
         v-for="item in items"
@@ -18,7 +19,7 @@
         v-for="item in items"
         :key="item.tab"
       >
-        <v-card width="30%" id="_sideBar" dark>
+        <v-card width="100%" id="_sideBar" dark>
           <v-card-text>
             <component :is="item.content"></component>
           </v-card-text>
@@ -65,9 +66,12 @@ import AchievementsComp from "@/components/tabs/AchievementsComp.vue"
 
 <style scoped>
 #_sideBar{
-    height: 90vh;
+    height: 85vh;
+    padding:0px 155px;
 }
 #_dynamicTabNavBar{
   position: relative;
+  margin-top:-19px;
+  width:50%;
 }
 </style>
