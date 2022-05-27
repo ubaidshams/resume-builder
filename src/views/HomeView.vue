@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 import NavbarCompVue from "../components/navbar/NavbarComp.vue";
 import ResumePreviewVue from "../components/ResumePreview.vue";
 export default {
@@ -15,5 +16,6 @@ export default {
     NavbarCompVue,
     ResumePreviewVue,
   },
+  
 };
 </script>

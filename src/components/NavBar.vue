@@ -17,17 +17,17 @@ export default {
     MenuBlock,
     AuthBlock,
   },
+  
 };
 </script>
 
-<style  scoped>
-.navbarBlock
-{
-    width: 100%;
-    height: 10vh;
+<style scoped>
+.navbarBlock {
+  width: 100%;
+  height: 10vh;
 }
-.navbarBlock article{
-    width:95%;
-    height: 10vh;
+.navbarBlock article {
+  width: 95%;
+  height: 10vh;
 }
 </style>

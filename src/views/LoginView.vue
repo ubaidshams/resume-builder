@@ -37,13 +37,15 @@
 </template>
 
 <script>
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../apis/firebase/firebaseConfig";
 import router from "../router/index";
 export default {
   name: "LoginView",
   data() {
     return {
+      userName: "",
+      userData: "",
       valid: false,
 
       password: "",
@@ -61,14 +63,23 @@ export default {
   methods: {
     handleSubmit: async function () {
       try {
-        await signInWithEmailAndPassword(auth, this.email, this.password);
+        await signInWithEmailAndPassword(auth, this.email, this.password).then(
+          userCredential => {
+            this.userData = userCredential.user;
+            this.userName = userCredential.user.displayName;
+          }
+        );
         this.$vToastify.success("Login successfull");
-        router.push("/");
+
+        await router.push("/");
       } catch (err) {
         console.log(err);
         this.$vToastify.error(err);
       }
     },
+  },
+  watch: {
+    userName() {},
   },
 };
 </script>
