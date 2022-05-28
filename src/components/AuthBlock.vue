@@ -34,48 +34,33 @@
 </template>
 
 <script>
-import { auth, db } from "../apis/firebase/firebaseConfig";
-import { onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { auth } from "../apis/firebase/firebaseConfig";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import router from "../router/index";
+
 export default {
   name: "AuthBlock",
   data() {
     return {
       uid: "",
+      url: "",
       avatar_url:
         "https://ouch-cdn2.icons8.com/-JZptPGuKRXkyuzdLeFBi71mdKqKYQHlVYx_4AQFhdQ/rs:fit:256:256/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTIx/LzYyOTBlMmU4LWQ2/NmMtNDgzMS1hOWFl/LTUwNDQ3M2ZkMWZj/NS5wbmc.png",
       userData: "",
       items: [
-        { title: "Signout", func: this.handleSignout },
         { title: "Update Profile", func: this.handleUpdateProfile },
+        { title: "Signout", func: this.handleSignout },
       ],
     };
   },
 
   methods: {
-    getUserName: async function () {
-      const q = query(collection(db, "user"), where("uid", "==", this.uid));
-
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(doc => {
-        // doc.data() is never undefined for query doc snapshots
-        this.userData = doc.data();
-      });
-    },
     handleSignout: async function () {
       signOut(auth);
     },
-    // handleUpdateProfile: async function () {
-    //   try {
-    //     await updateProfile(auth.currentUser, {
-    //       displayName: "Ubaid Shams",
-    //       photoURL:
-    //         "https://lh3.googleusercontent.com/ogw/ADea4I5Pu3LPy182ca7LlZYPUOS9ahfdqQu4h86uR5BHMQ=s32-c-mo",
-    //     });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
+    handleUpdateProfile: function () {
+      router.push("/update-profile");
+    },
   },
   beforeMount() {
     console.log("before mount");
