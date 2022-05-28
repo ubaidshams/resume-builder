@@ -7,11 +7,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     payload: {
-      name: "",
-      phoneNumber: "",
-      age: "",
-      email: "",
-      select: null,
+      name: "srivishnu ",
+      phoneNumber: "6382031401",
+      age: "24",
+      email: "duraisrivishnu@gmail.com",
+      select: "item1",
       profilePicture:null,
     },
   },

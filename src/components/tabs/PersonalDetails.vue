@@ -5,11 +5,11 @@
         <validation-provider
           v-slot="{ errors }"
           name="Name"
-          rules="required|max:10"
+          rules="required"
         >
           <v-text-field
             v-model="payload.name"
-            :counter="10"
+            
             :error-messages="errors"
             label="Name"
             required
@@ -21,12 +21,12 @@
           :rules="{
             required: true,
             digits: 12,
-            regex: '^(71|72|74|76|91|82|84|85|86|87|88|89)\\d{10}$',
+            regex: '^(71|72|74|76|91|82|84|85|86|87|88|89)\\d{12}$',
           }"
         >
           <v-text-field
             v-model="payload.phoneNumber"
-            :counter="12"
+            :counter="10"
             :error-messages="errors"
             label="Phone Number"
             required
@@ -65,11 +65,11 @@
           ></v-select>
         </validation-provider>
 
-        <v-file-input
+        <!-- <v-file-input
           small-chips
           label="Profile Pic"
           v-model="payload.profilePicture"
-        ></v-file-input>
+        ></v-file-input> -->
 
         <v-checkbox
           v-model="payload.readyToRelocate"
@@ -140,7 +140,7 @@ export default {
       select: null,
       items: ["Item 1", "Item 2", "Item 3", "Item 4"],
       readyToRelocate: false,
-      profilePicture: null,
+      // profilePicture: null,
     },
   }),
 
@@ -149,7 +149,7 @@ export default {
       this.$refs.observer.validate();
       console.log("submit is clicked");
       this.$store.dispatch("handleSubmit", this.payload);
-      console.log(" this is vuex", this.$store.state.payload);
+      // console.log(" this is vuex", this.$store.state.payload);
       this.clear();
     },
   },

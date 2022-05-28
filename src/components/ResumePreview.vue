@@ -18,7 +18,7 @@ import CheckVuexVue from './tabs/CheckVuex.vue'
 #_resumePreviewComp{
     position: absolute;
     margin-left: 53%;
-    margin-top: 200px;
+    /* margin-top: 200px; */
     padding: 15px;
 }
 </style>
