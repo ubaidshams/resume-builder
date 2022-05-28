@@ -42,17 +42,12 @@
               <v-text-field
                 v-model="user.password"
                 type="password"
+                :rules="passwordRules"
                 label="Password"
                 required
               ></v-text-field>
             </v-col>
-            <v-col cols="12" md="4">
-              <v-file-input
-                accept="image/*"
-                label="File input"
-                v-model="user.avatar"
-              ></v-file-input>
-            </v-col>
+
             <v-col cols="12" md="4" class="d-flex justify-center">
               <v-btn color="success" type="submit">register</v-btn>
             </v-col>
@@ -64,11 +59,11 @@
 </template>
 
 <script>
-import { auth, db, storage } from "../apis/firebase/firebaseConfig";
+import { auth, db } from "../apis/firebase/firebaseConfig";
 import router from "../router/index";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+
 export default {
   name: "SignupView",
   data() {
@@ -80,11 +75,14 @@ export default {
         password: "",
         email: "",
         uid: "",
-        avatar: "",
       },
       nameRules: [
         v => !!v || "Name is required",
         v => v.length <= 10 || "Name must be less than 10 characters",
+      ],
+      passwordRules: [
+        v => !!v || "Password is required",
+        v => v.length >= 6 || "Password must be more than than 6 characters",
       ],
 
       emailRules: [
@@ -103,16 +101,14 @@ export default {
         ).then(userCredential => {
           this.user.uid = userCredential.user.uid;
           userCredential.user.displayName = this.user.firstname;
-          userCredential.user.photoURL = this.user.avatar;
         });
-        this.$vToastify.success("Registered successfully");
         this.sendUserData();
-        this.uploadAvatar();
+        this.$vToastify.success("Registered successfully");
 
         router.push("/");
       } catch (error) {
         console.log(error);
-        this.$vToastify.error("Error");
+        this.$vToastify.error(error);
       }
     },
     sendUserData: async function () {
@@ -121,18 +117,6 @@ export default {
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {
         console.error("Error adding document: ", e);
-      }
-    },
-    uploadAvatar: async function () {
-      try {
-        const storageRef = ref(storage, "user/avatar");
-
-        // 'file' comes from the Blob or File API
-        await uploadBytes(storageRef, this.user.avatar).then(snapshot => {
-          console.log("Uploaded a blob or file!");
-        });
-      } catch (error) {
-        console.log(error);
       }
     },
   },

@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
+import UpdateProfile from "../views/UpdateProfile.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/signup",
 
     component: SignupView,
+  },
+  {
+    path: "/update-profile",
+
+    component: UpdateProfile,
   },
 ];
 
