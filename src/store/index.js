@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex from 'vuex';
+
 
 Vue.use(Vuex)
 
@@ -11,14 +12,14 @@ export default new Vuex.Store({
       age: "",
       email: "",
       select: null,
-      
+      profilePicture:null,
     },
   },
   getters: {},
   mutations: {
     handleSubmit: (state, payload) => {
       state.payload = payload;
-    }
+    },
   },
   actions: {
     handleSubmit: (context, payload) => {

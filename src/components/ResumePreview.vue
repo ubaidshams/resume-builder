@@ -1,6 +1,5 @@
 <template>
     <v-card id="_resumePreviewComp" class="red " width="45%">
-        this is the ResumePreview component
         <CheckVuexVue/>
     </v-card>
 </template>

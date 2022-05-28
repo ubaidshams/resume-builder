@@ -32,15 +32,15 @@
             required
           ></v-text-field>
         </validation-provider>
-        
-          <v-text-field
-            v-model.number="payload.age"
-            :counter="2"
-            :error-messages="errors"
-            label="Age"
-            required
-          ></v-text-field>
-        
+
+        <v-text-field
+          v-model.number="payload.age"
+          :counter="2"
+          :error-messages="errors"
+          label="Age"
+          required
+        ></v-text-field>
+
         <validation-provider
           v-slot="{ errors }"
           name="email"
@@ -65,7 +65,16 @@
           ></v-select>
         </validation-provider>
 
-        
+        <v-file-input
+          small-chips
+          label="Profile Pic"
+          v-model="payload.profilePicture"
+        ></v-file-input>
+
+        <v-checkbox
+          v-model="payload.readyToRelocate"
+          label="Ready-to-re-locate"
+        ></v-checkbox>
 
         <v-btn
           class="mr-4"
@@ -75,7 +84,6 @@
         >
           submit
         </v-btn>
-        <v-btn @click="clear"> clear </v-btn>
       </form>
     </validation-observer>
   </v-card>
@@ -124,36 +132,27 @@ export default {
     ValidationObserver,
   },
   data: () => ({
-    payload:{
+    payload: {
       name: "",
-    phoneNumber: "",
-    age: "",
-    email: "",
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    }
-    
+      phoneNumber: "",
+      age: "",
+      email: "",
+      select: null,
+      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+      readyToRelocate: false,
+      profilePicture: null,
+    },
   }),
 
   methods: {
-    handleSubmit(){
+    handleSubmit() {
       this.$refs.observer.validate();
       console.log("submit is clicked");
       this.$store.dispatch("handleSubmit", this.payload);
-      console.log(" this is vuex",this.$store.state.payload)
-      this.clear()
-      
-    },
-    clear() {
-      this.name = "";
-      this.phoneNumber = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = null;
-      this.$refs.observer.reset();
+      console.log(" this is vuex", this.$store.state.payload);
+      this.clear();
     },
   },
-  
 };
 </script>
 
@@ -163,4 +162,3 @@ export default {
   overflow: visible;
 }
 </style>
-
