@@ -66,7 +66,7 @@ import AchievementsComp from "@/components/tabs/AchievementsComp.vue"
 
 <style scoped>
 #_sideBar{
-    height: 85vh;
+    height: 90vh;
     padding:0px 155px;
 }
 #_dynamicTabNavBar{

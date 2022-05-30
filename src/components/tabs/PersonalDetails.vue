@@ -2,14 +2,9 @@
   <v-card id="_formCard" class="" elevation="0">
     <validation-observer ref="observer" v-slot="{ invalid }">
       <form @submit.prevent="handleSubmit(this.payload)">
-        <validation-provider
-          v-slot="{ errors }"
-          name="Name"
-          rules="required"
-        >
+        <validation-provider v-slot="{ errors }" name="Name" rules="required">
           <v-text-field
             v-model="payload.name"
-            
             :error-messages="errors"
             label="Name"
             required
@@ -21,12 +16,12 @@
           :rules="{
             required: true,
             digits: 12,
-            regex: '^(71|72|74|76|91|82|84|85|86|87|88|89)\\d{12}$',
+            regex: '^(71|72|74|76|91|82|84|85|86|87|88|89)\\d{10}$',
           }"
         >
           <v-text-field
             v-model="payload.phoneNumber"
-            :counter="10"
+            :counter="12"
             :error-messages="errors"
             label="Phone Number"
             required
@@ -53,17 +48,14 @@
             required
           ></v-text-field>
         </validation-provider>
-        <validation-provider v-slot="{ errors }" name="select" rules="required">
-          <v-select
-            v-model="payload.select"
-            :items="payload.items"
-            :error-messages="errors"
-            label="Select"
-            data-vv-name="select"
-            required
-            item-value
-          ></v-select>
-        </validation-provider>
+        <v-textarea
+          outlined
+          name="input-7-4"
+          label="Address"
+          v-model="payload.address"
+          required
+          :error-messages="errors"
+        ></v-textarea>
 
         <!-- <v-file-input
           small-chips
@@ -138,7 +130,8 @@ export default {
       age: "",
       email: "",
       select: null,
-      items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+      address: "",
+
       readyToRelocate: false,
       // profilePicture: null,
     },
@@ -150,7 +143,7 @@ export default {
       console.log("submit is clicked");
       this.$store.dispatch("handleSubmit", this.payload);
       // console.log(" this is vuex", this.$store.state.payload);
-      this.clear();
+      
     },
   },
 };

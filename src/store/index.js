@@ -1,18 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+Vue.use(Vuex);
+// Personal-Details module
+export const personalDetails = {
   state: {
     payload: {
-      name: "srivishnu ",
-      phoneNumber: "6382031401",
-      age: "24",
-      email: "duraisrivishnu@gmail.com",
-      select: "item1",
-      profilePicture:null,
+      name: "",
+      phoneNumber: "",
+      age: "",
+      email: "",
+      address: "",
+      profilePicture: null,
     },
   },
   getters: {},
@@ -26,5 +25,61 @@ export default new Vuex.Store({
       context.commit("handleSubmit", payload);
     },
   },
-  modules: {},
+};
+
+
+export const educationalDetails = {
+  state: {
+    educationPayload: {
+      menu1: false,
+      menu2: false,
+      masters: {
+        mastersIn: [],
+        mastersFrom: "",
+        mastersTo: "",
+        mLocation: "",
+      },
+      bacholers: {
+        bacholersIn: [],
+        bacholersFrom: [],
+        bacholersTo: [],
+        bLocation: [],
+      },
+      institutonName: {
+        bInstitution: "",
+        mInstitution: "",
+      },
+    },
+  },
+  getters: {},
+  mutations: {
+    educationDetails: (state, payload) => {
+      state.educationPayload = payload;
+     }
+  },
+  actions: {
+    educationDetails: (context, payload) => {
+      context.commit("educationDetails", payload);
+    },
+  },
+};
+
+export default new Vuex.Store({
+  state: {
+    // skeleton-loader
+    attrs: {
+      class: "mb-6",
+      boilerplate: true,
+      elevation: 2,
+    },
+  },
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    personalDetails,
+    educationalDetails,
+  },
 });
+
+// console.log(state.PersonalDetails.payload.age)
