@@ -71,7 +71,6 @@ export default {
         this.userData = user;
         console.log(user.displayName);
         // ...
-        this.getUserName();
       } else {
         // User is signed out
         // ...

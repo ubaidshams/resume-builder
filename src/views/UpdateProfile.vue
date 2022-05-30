@@ -5,7 +5,6 @@
         <template>
           <v-form
             @submit.prevent="handleEdit"
-            v-model="valid"
             class="d-flex justify-center align-center"
           >
             <v-container class="d-flex flex-column justify-center align-center">
@@ -14,7 +13,6 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="currentUser.displayName"
-                    :rules="nameRules"
                     :counter="10"
                     label="Display name"
                     required
@@ -25,7 +23,6 @@
                   <v-text-field
                     v-model="currentUser.email"
                     type="email"
-                    :rules="emailRules"
                     label="E-mail"
                     required
                   ></v-text-field>
@@ -89,15 +86,18 @@ export default {
         .then(url => {
           // `url` is the download URL for 'images/stars.jpg'
           this.avatarURL = url;
+          console.log(this.avatarURL);
+          console.log(typeof this.avatarURL);
         })
         .catch(error => {
           // Handle any errors
+          error;
         });
     },
     updateUser: function () {
       updateProfile(auth.currentUser, {
         displayName: this.currentUser.displayName,
-        photoURL: this.avatarURL,
+        photoURL: `${this.avatarURL}`,
       });
     },
   },
