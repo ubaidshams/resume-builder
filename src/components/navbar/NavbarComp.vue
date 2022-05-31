@@ -36,7 +36,7 @@ import EducationalDetails from "@/components/tabs/EducationalDetails.vue";
 import ExperienceComp from "@/components/tabs/ExperienceComp.vue";
 import ProjectsComp from "@/components/tabs/ProjectsComp.vue";
 import SkillsComp from "@/components/tabs/SkillsComp.vue";
-import AchievementsComp from "@/components/tabs/AchievementsComp.vue"
+import AboutComp from "@/components/tabs/AboutComp.vue"
     export default {
         name:"NavbarComp",
         data () {
@@ -48,7 +48,7 @@ import AchievementsComp from "@/components/tabs/AchievementsComp.vue"
           { tab: 'Experience', content: 'ExperienceComp' },
           { tab: 'Projects', content: 'ProjectsComp' },
           { tab: 'Skills', content: 'SkillsComp' },
-          { tab: 'Achievements', content: 'AchievementsComp' },
+          { tab: 'About', content: 'AboutComp' },
           
         ],
       }
@@ -59,7 +59,7 @@ import AchievementsComp from "@/components/tabs/AchievementsComp.vue"
         ExperienceComp,
         ProjectsComp,
         SkillsComp,
-        AchievementsComp
+        AboutComp,
     }
     }
 </script>

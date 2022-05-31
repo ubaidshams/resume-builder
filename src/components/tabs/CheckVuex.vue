@@ -1,7 +1,7 @@
 <template>
   
-    <v-card class="container">
-      <div class="header">
+    <v-card class="container" >
+      <div class="header" v-if="this.$store.state.personalDetails.payload.name != ''">
         <div class="full-name">
           <span class="first-name">{{ this.$store.state.personalDetails.payload.name }}</span>
         </div>
@@ -18,52 +18,41 @@
         </div>
 
         <div class="about">
-          <span class="position">Front-End Developer </span>
+          <span class="position">{{this.$store.state.aboutDetails.aboutPayload.designation}}</span>
           <span class="desc--position">
-            I am a front-end developer with more than 3 years of experience
-            writing html, css, and js. I'm motivated, result-focused and seeking
-            a successful team-oriented company with opportunity to grow.
+            {{this.$store.state.aboutDetails.aboutPayload.description}}
           </span>
         </div>
       </div>
+      <!-- <div  v-else><h1>welcome to resume building, this is your canvas when update each form it will be refelected here...!</h1></div> -->
       <div class="details">
-        <div class="section">
-          <div class="section__title">Experience</div>
+        <div class="section" v-if="this.$store.state.experienceDetails.experiencePayload.companyName != ''">
+          <div class="section__title"  >Experience</div>
           <div class="section__list">
             <div class="section__list-item">
               <div class="left">
-                <div class="name">KlowdBox</div>
-                <div class="addr">San Fr, CA</div>
-                <div class="duration">Jan 2011 - Feb 2015</div>
+                <div class="name">{{this.$store.state.experienceDetails.experiencePayload.companyName}}</div>
+                <div class="addr">{{this.$store.state.experienceDetails.experiencePayload.companyLocation}}</div>
+                <div class="duration">{{this.$store.state.experienceDetails.experiencePayload.cFrom}}-{{this.$store.state.experienceDetails.experiencePayload.cTo}}</div>
               </div>
               <div class="right">
-                <div class="name">Fr developer</div>
-                <div class="desc">did This and that</div>
+                <div class="name">{{this.$store.state.experienceDetails.experiencePayload.roleInThatCompany}}</div>
+                <div class="desc">{{this.$store.state.experienceDetails.experiencePayload.responsibility}}</div>
               </div>
             </div>
-            <div class="section__list-item">
-              <div class="left">
-                <div class="name">Akount</div>
-                <div class="addr">San Monica, CA</div>
-                <div class="duration">Jan 2011 - Feb 2015</div>
-              </div>
-              <div class="right">
-                <div class="name">Fr developer</div>
-                <div class="desc">did This and that</div>
-              </div>
-            </div>
+            
           </div>
         </div>
-        <div class="section">
+        <div class="section" v-if="this.$store.state.educationalDetails.educationPayload.institutonName.mInstitution != ''">
           <div class="section__title">Education</div>
           <div class="section__list">
             <div class="section__list-item">
-              <v-card class="left" elevation="0">
+              <v-card v-if="this.$store.state.educationalDetails.educationPayload.institutonName.mInstitution != ''" class="left" elevation="0">
                 <div class="name">{{this.$store.state.educationalDetails.educationPayload.institutonName.mInstitution}}</div>
                 <div class="addr">{{this.$store.state.educationalDetails.educationPayload.masters.mLocation}}</div>
                 <div class="duration">{{this.$store.state.educationalDetails.educationPayload.masters.mastersFrom}} - {{this.$store.state.educationalDetails.educationPayload.masters.mastersTo}} </div>
               </v-card>
-              <v-card class="right" elevation="0">
+              <v-card v-if="this.$store.state.educationalDetails.educationPayload.institutonName.bInstitution != ''" class="right" elevation="0">
                 <div class="name">{{this.$store.state.educationalDetails.educationPayload.institutonName.bInstitution}}</div>
                 <div class="addr">{{this.$store.state.educationalDetails.educationPayload.bacholers.bLocation}}</div>
                 <div class="duration">{{this.$store.state.educationalDetails.educationPayload.bacholers.bacholersFrom}} - {{this.$store.state.educationalDetails.educationPayload.bacholers.bacholersTo}}</div>
@@ -72,38 +61,47 @@
             
           </div>
         </div>
-        <div class="section">
+        <div class="section" v-if="this.$store.state.projectsDetails.projectPayload.project1 != ''">
           <div class="section__title">Projects</div>
           <div class="section__list">
             <div class="section__list-item">
-              <div class="text">
-                I am a front-end developer with more than 3 years of experience
-                writing html, css, and js. I'm motivated, result-focused and
-                seeking a successful team-oriented company with opportunity to
-                grow.
+              <div class="text" v-if="this.$store.state.projectsDetails.projectPayload.project1 != ''">
+              <span class="name">Project-1:</span>
+                {{this.$store.state.projectsDetails.projectPayload.project1}}
               </div>
             </div>
 
             <div class="section__list-item">
-              <div class="text">
-                I am a front-end developer with more than 3 years of experience
-                writing html, css, and js. I'm motivated, result-focused and
-                seeking a successful team-oriented company with opportunity to
-                grow. <a href="/login">link</a>
+              <div v-if="this.$store.state.projectsDetails.projectPayload.project2 != ''" class="text">
+                <span class="name">Project-2:</span>
+                {{this.$store.state.projectsDetails.projectPayload.project2}}
               </div>
             </div>
           </div>
         </div>
-        <div class="section">
+        <div class="section" v-if="this.$store.state.skillDetails.skillsPayload.languages != ''">
           <div class="section__title">Skills</div>
           <div class="skills">
-            <div class="skills__item">
-              <div class="left"><div class="name">Javascript</div></div>
+            <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.languages != ''" >
+              <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.languages != ''" class="name">Languages <span v-if="this.$store.state.skillDetails.skillsPayload.languagesProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.languages}}</div></div>
             </div>
+            <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.frontEnd != ''" >
+              <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.frontEnd != ''" class="name">Front-End <span v-if="this.$store.state.skillDetails.skillsPayload.frontEndProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.frontEnd}}</div></div>
+            </div>
+            <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.backEnd != ''">
+            <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.backEnd != ''" class="name">Back-End <span v-if="this.$store.state.skillDetails.skillsPayload.backEndProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.backEnd}}</div></div>
           </div>
-          <div class="skills__item">
-            <div class="left"><div class="name">CSS</div></div>
+          <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.rdbms != ''" >
+            <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.rdbms != ''" class="name">SQL <span v-if="this.$store.state.skillDetails.skillsPayload.sqlProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.rdbms}}</div></div>
           </div>
+          <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.noSQL != ''">
+            <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.noSQL != ''" class="name">NoSQL <span v-if="this.$store.state.skillDetails.skillsPayload.noSqlEndProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.noSQL}}</div></div>
+          </div>
+          <div class="skills__item" v-if="this.$store.state.skillDetails.skillsPayload.devTools != ''">
+            <div class="left"><div v-if="this.$store.state.skillDetails.skillsPayload.devTools != ''" class="name">Dev Tools <span v-if="this.$store.state.skillDetails.skillsPayload.devToolsProficient != false"><i>(proficient)</i></span> :{{this.$store.state.skillDetails.skillsPayload.devTools}}</div></div>
+          </div>
+          </div>
+          
         </div>
       </div>
     </v-card>
@@ -249,6 +247,7 @@ export default {
   .name {
     font-weight: bold;
     font-size: 10px;
+    text-transform: uppercase;
   }
 
   a {
@@ -266,7 +265,7 @@ export default {
   }
 
   .skills__item {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .skills__item .right {

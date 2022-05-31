@@ -4,7 +4,7 @@
       <!-- masters degree starts -->
       <v-card class="form" elevation="0">
         <v-card-title>Masters</v-card-title>
-        <v-text-field
+        <v-text-field clearable
           label="Institution Name"
           v-model.trim="educationPayload.institutonName.mInstitution"
         ></v-text-field>
@@ -205,7 +205,7 @@
         </v-row>
       </v-card>
       <!-- bacholers degree ends -->
-      <v-btn @click="educationDetails">UPDATE</v-btn>
+      <v-btn class="green--text" @click="educationDetails">UPDATE</v-btn>
     </v-form>
   </v-card>
 </template>
@@ -221,15 +221,15 @@ export default {
       menu2: false,
         masters: {
           mastersIn: [],
-          mastersFrom: [],
-          mastersTo: [],
-          mLocation:[],
+          mastersFrom: "",
+          mastersTo: "",
+          mLocation:"",
         },
         bacholers: {
           bacholersIn: [],
-          bacholersFrom: [],
-          bacholersTo: [],
-          bLocation:[]
+          bacholersFrom: "",
+          bacholersTo: "",
+          bLocation:"",
         },
         institutonName: {
           bInstitution: "",
