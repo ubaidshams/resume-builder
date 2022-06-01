@@ -32,6 +32,7 @@
                     <v-file-input
                       show-size
                       counter
+                      type="image"
                       label="File input"
                       v-model="inputFile"
                     ></v-file-input>
