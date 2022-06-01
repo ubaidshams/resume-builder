@@ -76,6 +76,7 @@ export default {
 }
 .field-container{ 
     margin-top: 5px;
+    
     margin-bottom:-18px;
 }
 .proficient--checkbox{ 

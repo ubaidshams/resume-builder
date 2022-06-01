@@ -55,7 +55,7 @@ export const educationalDetails = {
   mutations: {
     educationDetails: (state, payload) => {
       state.educationPayload = payload;
-     }
+    },
   },
   actions: {
     educationDetails: (context, payload) => {
@@ -128,16 +128,17 @@ export const experienceDetails = {
       companyName: "",
       companyLocation: "",
       cFrom: "",
-      cTo: "Present",
+      cTo: "",
       roleInThatCompany: "",
-      responsibility: "",
+      responsibility:
+        "",
     },
   },
   getters: {},
   mutations: {
     experienceDetails: (state, payload) => {
       state.experiencePayload = payload;
-    }
+    },
   },
   actions: {
     experienceDetails: (context, payload) => {

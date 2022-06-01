@@ -266,6 +266,8 @@ export default {
 
   .skills__item {
     margin-bottom: 5px;
+    width:100%;
+    border:2px solid 
   }
 
   .skills__item .right {
